@@ -1,0 +1,15 @@
+[Unit]
+Description=TCP relay 127.0.0.1:7844 -> proxy -> Cloudflare edge
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /opt/cf-tunnel/scripts/tcp-relay.js
+Restart=always
+RestartSec=3
+# Proxy diambil dari environment; sesuaikan dengan proxy VM kamu
+Environment="PROXY_HOST=198.19.0.1"
+Environment="PROXY_PORT=3128"
+
+[Install]
+WantedBy=multi-user.target

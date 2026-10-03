@@ -1,0 +1,12 @@
+[Unit]
+Description=Cloudflare Named Tunnel (via relay)
+After=network.target mini-dns.service tcp-relay.service
+
+[Service]
+Type=simple
+ExecStart=/opt/cf-tunnel/scripts/run-cf-tunnel.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
